@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RicksApp", "RicksApp\RicksApp.csproj", "{1DB20F5E-BBB1-4D06-9167-B3D2402E7A3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToddAndGinaApp", "ToddAndGinaApp\ToddAndGinaApp.csproj", "{DC46B0D8-6987-4322-BD97-579F88B57AA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DB20F5E-BBB1-4D06-9167-B3D2402E7A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB20F5E-BBB1-4D06-9167-B3D2402E7A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB20F5E-BBB1-4D06-9167-B3D2402E7A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB20F5E-BBB1-4D06-9167-B3D2402E7A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC46B0D8-6987-4322-BD97-579F88B57AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC46B0D8-6987-4322-BD97-579F88B57AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC46B0D8-6987-4322-BD97-579F88B57AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC46B0D8-6987-4322-BD97-579F88B57AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDF83E01-E132-4D11-9B4C-F161CE208AB4}
+	EndGlobalSection
+EndGlobal
