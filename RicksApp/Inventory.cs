@@ -29,31 +29,19 @@ namespace RicksApp
             return inventory.Find(instrument => instrument.Spec.Model == name);
         }
 
-        public List<Guitar> Search(GuitarSpec searchGuitar)
+        public List<Instrument> Search(InstrumentSpec searchInstrument)
         {
-            Console.WriteLine("Yess");
-            List<Guitar> foundGuitars = new List<Guitar>();
-            foreach (var guitar in inventory)
+            List<Instrument> foundInstruments = new List<Instrument>();
+            foreach (var instrument in inventory)
             {
-                if (searchGuitar.Matches(guitar.Spec))
+                if (searchInstrument.Matches(instrument.Spec))
                 {
-                    foundGuitars.Add((Guitar)guitar);
+                    foundInstruments.Add(instrument);
                 }
             }
-            return foundGuitars;
+            return foundInstruments;
         }
 
-        public List<Mandolin> Search(MandolinSpec searchMandolin)
-        {
-            List<Mandolin> foundMandolins = new List<Mandolin>();
-            foreach (var mandolin in inventory)
-            {
-                if (searchMandolin.Matches(mandolin.Spec))
-                {
-                    foundMandolins.Add((Mandolin)mandolin);
-                }
-            }
-            return foundMandolins;
-        }
+     
     }
 }

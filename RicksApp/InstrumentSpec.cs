@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RicksApp
 {
-    public abstract class InstrumentSpec
+    public  class InstrumentSpec
     {
         public string Model { get;  }
         public Builder Builder { get;  }
