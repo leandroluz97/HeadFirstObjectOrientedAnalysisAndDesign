@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RicksApp
 {
-    public abstract class Instrument
+    public class Instrument
     {
         public string SerialNumber { get; set; }
         public double Price { get; set; }

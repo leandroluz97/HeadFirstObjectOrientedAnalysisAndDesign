@@ -8,43 +8,36 @@ namespace RicksApp
 {
     public  class InstrumentSpec
     {
-        public string Model { get;  }
-        public Builder Builder { get;  }
-        public Type Type { get;  }
-        public Wood BackWood { get;  }
-        public Wood TopWood { get;  }
+        public Dictionary<string, string> Properties { get; set; } = new Dictionary<string, string>();
+        //public string Model { get;  }
+        //public Builder Builder { get;  }
+        //public Type Type { get;  }
+        //public Wood BackWood { get;  }
+        //public Wood TopWood { get;  }
 
-        public InstrumentSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood)
+        public InstrumentSpec(Dictionary<string, string> properties)
         {
-            Builder = builder;
-            Model = model;
-            Type = type;    
-            BackWood = backWood;
-            TopWood = topWood;
+            Properties = properties;
         }
-
+        public string? getProperty(string property)
+        {
+          
+            if(Properties.TryGetValue(property, out string output))
+            {
+                return output;
+            }
+            return null;
+        }
         public Boolean Matches(InstrumentSpec otherSpec)
         {
-            if (Builder != otherSpec.Builder)
+            foreach (  var (key, value) in Properties)
             {
-                return false;
+                if (!otherSpec.Properties.TryGetValue(key, out string output) || value != output)
+                {
+                    return false;
+                }
             }
-            if (Model != otherSpec.Model)
-            {
-                return false;
-            }
-            if (Type != otherSpec.Type)
-            {
-                return false;
-            }
-            if (BackWood != otherSpec.BackWood)
-            {
-                return false;
-            }
-            if (TopWood != otherSpec.TopWood)
-            {
-                return false;
-            }
+
             return true;
         }
 
