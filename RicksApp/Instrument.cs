@@ -16,6 +16,7 @@ namespace RicksApp
         {
             Price = price;  
             Spec = spec;
+            SerialNumber = Guid.NewGuid().ToString();
         }
 
 

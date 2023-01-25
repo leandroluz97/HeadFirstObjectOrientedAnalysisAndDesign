@@ -8,31 +8,32 @@ namespace RicksApp
 {
     public  class InstrumentSpec
     {
-        public Dictionary<string, string> Properties { get; set; } = new Dictionary<string, string>();
+        public  Dictionary<string, object> Properties { get; set; }=new Dictionary<string, object>();
         //public string Model { get;  }
         //public Builder Builder { get;  }
         //public Type Type { get;  }
         //public Wood BackWood { get;  }
         //public Wood TopWood { get;  }
 
-        public InstrumentSpec(Dictionary<string, string> properties)
+        public InstrumentSpec(Dictionary<string, object> properties)
         {
             Properties = properties;
         }
-        public string? getProperty(string property)
+        public object getProperty(string property)
         {
           
-            if(Properties.TryGetValue(property, out string output))
+          
+            if(Properties.TryGetValue(property, out object output))
             {
                 return output;
             }
-            return null;
+            return default(object);
         }
         public Boolean Matches(InstrumentSpec otherSpec)
         {
             foreach (  var (key, value) in Properties)
             {
-                if (!otherSpec.Properties.TryGetValue(key, out string output) || value != output)
+                if (!otherSpec.Properties.TryGetValue(key, out object output  ))
                 {
                     return false;
                 }

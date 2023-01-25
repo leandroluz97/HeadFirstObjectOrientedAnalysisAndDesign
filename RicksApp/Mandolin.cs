@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RicksApp
 {
-    public class Mandolin: Instrument
-    {
-        private double Price { get; set; }
-        private MandolinSpec Spec { get; set; }
-        public Mandolin(double price, MandolinSpec spec):base(price, spec)
-        {
-            Price = price;
-            Spec = spec;
-        }
-    }
+    //public class Mandolin: Instrument
+    //{
+    //    private double Price { get; set; }
+    //    private MandolinSpec Spec { get; set; }
+    //    public Mandolin(double price, MandolinSpec spec):base(price, spec)
+    //    {
+    //        Price = price;
+    //        Spec = spec;
+    //    }
+    //}
 }

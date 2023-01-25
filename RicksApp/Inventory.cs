@@ -19,14 +19,14 @@ namespace RicksApp
            inventory.Add(instrument);
         }
 
-        public Instrument? GetInstrument(string name)
+        public Instrument GetInstrument(string name)
         {
-            if(name == null)
+            if (name == null)
             {
                 throw new ArgumentNullException(nameof(name));
             }
 
-            return inventory.Find(instrument => instrument.Spec.Model == name);
+            return inventory.Find(instrument => instrument.Spec.Properties["Model"] == name);
         }
 
         public List<Instrument> Search(InstrumentSpec searchInstrument)
