@@ -27,6 +27,7 @@ namespace RicksApp
             spec1.Add("Model", "PT0001");
             spec1.Add("BackWood", Wood.IndianRoseWood);
             spec1.Add("FrontWood", Wood.IndianRoseWood);
+            spec1.Add("InstrumentType", InstrumentType.GUITAR);
             spec1.Add("NumString", 3);
 
             InstrumentSpec instrumentSpec1 = new InstrumentSpec(spec1);
@@ -48,7 +49,7 @@ namespace RicksApp
             //MyInventory.AddInstrument(guitar5);
             //MyInventory.AddInstrument(guitar6);
 
-            
+            Console.WriteLine(InstrumentType.FIDDLE);
             Console.WriteLine(MyInventory.inventory);
 
             foreach (var item in MyInventory.inventory)
@@ -62,7 +63,7 @@ namespace RicksApp
             {
                 foreach (var searchGuitar in searchGuitars)
                 {
-                    Console.WriteLine($"BackWood: {searchGuitar.Spec.Properties["BackWood"]}, {searchGuitar.SerialNumber}");
+                    Console.WriteLine($"BackWood: {searchGuitar.Spec.Properties["BackWood"]}, {searchGuitar.SerialNumber}, {searchGuitar.Spec.Properties["InstrumentType"]}");
                 }
             }
             else
@@ -76,7 +77,7 @@ namespace RicksApp
             }
             else
             {
-                Console.WriteLine("Found guitar");
+                Console.WriteLine("Not Found guitar");
             }
 
 
