@@ -9,11 +9,42 @@ namespace GarysGame
     public class Unit
     {
         public string  Type { get; set; }
-        public Dictionary<string, object> Properties{ get; set; }
+        public string Name { get; set; }
+        public int Id { get; set; }
+        List<Weapon> Weapons { get; set; }
+        public Dictionary<string, object> _properties;
 
-        public Unit()   
+        public Unit(int id)   
         {
+            Id = id;
+        }
 
+        public void SetProperty(string propertyName, object property)
+        {
+            if(_properties == null)
+            {
+                _properties = new Dictionary<string, object>();
+            }
+            _properties.Add(propertyName, property);
+        }
+
+        public object? GetProperty(string propertyName)
+        {
+            if((propertyName == null) || (_properties is null))
+            {
+                return null;
+            }
+
+            return _properties[propertyName];
+        }
+
+        public void AddWeapon(Weapon weapon)
+        {
+            if(Weapons == null)
+            {
+                Weapons = new List<Weapon>();
+            }
+            Weapons.Add(weapon);
         }
     }
 }
