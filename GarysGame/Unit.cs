@@ -12,7 +12,7 @@ namespace GarysGame
         public string Name { get; set; }
         public int Id { get; set; }
         List<Weapon> Weapons { get; set; }
-        public Dictionary<string, object> _properties;
+        private Dictionary<string, object> _properties;
 
         public Unit(int id)   
         {
@@ -25,7 +25,7 @@ namespace GarysGame
             {
                 _properties = new Dictionary<string, object>();
             }
-            _properties.Add(propertyName, property);
+            _properties[propertyName]= property;
         }
 
         public object? GetProperty(string propertyName)
