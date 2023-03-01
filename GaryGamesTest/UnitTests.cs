@@ -6,6 +6,19 @@ namespace GaryGamesTest
     public class UnitTests
     {
         [Fact]
+        public void GetNameProperty()
+        {
+            //Arrange
+            string name = "Damon";
+            Unit unit = new Unit(20);
+            //Act
+            unit.Name = name;
+            //Assert
+            Assert.Equal(name, unit.Name);
+
+        }
+
+        [Fact]
         public void GetCommonProperty()
         {
             //Arrange
@@ -62,6 +75,32 @@ namespace GaryGamesTest
            
             //Assert
             Assert.Null(unit.GetProperty(propertyName));
+
+        }
+
+        [Fact]
+        public void GetIdProperty()
+        {
+            //Arrange
+            int Id = 20;
+            //Act
+            Unit unit = new Unit(Id);
+            //Assert
+            Assert.True(Id == unit.Id);
+
+        }
+
+        [Fact]
+        public void GetWeapon()
+        {
+            //Arrange
+            object axiWeapon = new { name = "axi"};
+            //Act
+            Weapon weapon = new Weapon(axiWeapon);
+            Unit unit = new Unit(20);
+            unit.AddWeapon(weapon);
+            //Assert
+            Assert.True(weapon.Property == axiWeapon);
 
         }
     }
