@@ -11,7 +11,9 @@ namespace GarysGame
         public string  Type { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }
-        List<Weapon> Weapons { get; set; }
+        private List<Weapon> _weapons;
+        //private List<Weapon> Weapons; 
+        
         private Dictionary<string, object> _properties;
 
         public Unit(int id)   
@@ -40,11 +42,20 @@ namespace GarysGame
 
         public void AddWeapon(Weapon weapon)
         {
-            if(Weapons == null)
+            if(_weapons == null)
             {
-                Weapons = new List<Weapon>();
+                _weapons = new List<Weapon>();
             }
-            Weapons.Add(weapon);
+            _weapons.Add(weapon);
+        }
+
+        public List<Weapon> GetWeapons()
+        {
+            if( _weapons == null)
+            {
+                throw new Exception();
+            }
+            return _weapons;
         }
     }
 }
