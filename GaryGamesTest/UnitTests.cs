@@ -1,4 +1,5 @@
 using GarysGame;
+using System;
 using Xunit;
 
 namespace GaryGamesTest
@@ -71,11 +72,13 @@ namespace GaryGamesTest
             //Arrange
             string propertyName = "strength";
             Unit unit = new Unit(20);
-            //Act
            
             //Assert
-            Assert.Null(unit.GetProperty(propertyName));
-
+            Assert.Throws<Exception>(() =>
+            {
+                //Act
+                unit.GetProperty(propertyName);
+            });
         }
 
         [Fact]
@@ -102,6 +105,19 @@ namespace GaryGamesTest
             //Assert
             Assert.True(weapon.Property == axiWeapon);
 
+        }
+        [Fact]
+        public void GetWeapon_IsNull()
+        {
+            //Arrange
+            Unit unit = new Unit(20);
+
+            //Assert
+            Assert.Throws<Exception>(() =>
+            {
+                //Act
+                unit.GetWeapons();
+            });
         }
     }
 }

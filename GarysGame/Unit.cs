@@ -34,10 +34,16 @@ namespace GarysGame
         {
             if((propertyName == null) || (_properties is null))
             {
-                return null;
+                throw new Exception();
             }
 
-            return _properties[propertyName];
+            object? property = _properties[propertyName];
+
+            if(property == null)
+            {
+                throw new Exception();
+            }
+            return property;
         }
 
         public void AddWeapon(Weapon weapon)
@@ -52,7 +58,7 @@ namespace GarysGame
         public List<Weapon> GetWeapons()
         {
             if( _weapons == null)
-            {
+            { 
                 throw new Exception();
             }
             return _weapons;
