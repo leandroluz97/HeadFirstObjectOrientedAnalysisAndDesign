@@ -28,11 +28,12 @@ namespace GarysGame
             {
                 _units = new List<Unit>();
             }
-            if(_units.FirstOrDefault(unit => unit.Id == unit.Id) != null)
+            Unit? foundUnit = _units.FirstOrDefault(u => u.Id == unit.Id);
+            if (foundUnit != null)
             {
                 throw new Exception();
             }
-            _units.Add(unit);
+                _units.Add(unit);
         }
         public void RemoveUnit(int? id)
         {
@@ -51,7 +52,25 @@ namespace GarysGame
             {
                 throw new Exception();
             }
-            _units.Where(unit => unit.Id != id);
+             _units.Remove(unit);
+        }
+
+        public Unit? GetUnitById(int? id)
+        {
+            if (_units == null)
+            {
+                throw new Exception();
+            }
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            Unit? unit = _units.FirstOrDefault(u => u.Id == id);
+            if(unit == null)
+            {
+                throw new Exception();
+            }
+            return unit;
         }
     }
 }

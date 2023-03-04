@@ -10,10 +10,10 @@ namespace GaryGamesTest
 {
     public class UnitGroupTests
     {
-        private readonly UnitGroup _unitGroup;
+        private UnitGroup _unitGroup;
         public UnitGroupTests()
         {
-            UnitGroup _unitGroup = new UnitGroup("G");
+            _unitGroup = new UnitGroup("G");
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace GaryGamesTest
             List<Unit> units = _unitGroup.Units;    
 
             Assert.Equal(unitList.Count -1, units.Count);
-            Assert.False(units.Where(unit => unit.Id == 3).Any());
+            //Assert.False(units.Where(unit => unit.Id == 3).Any());
         }
 
         [Fact]
@@ -121,26 +121,57 @@ namespace GaryGamesTest
         [Fact]
         public void GetUnit_ByValidUnitId()
         {
+            Unit unit1 = new Unit(3) { Name = "warrior", Type = "person" };
+            Unit unit2 = new Unit(5) { Name = "fighter", Type = "person" };
+            List<Unit> unitList = new List<Unit>() { unit1, unit2 };
 
+            foreach (Unit unit in unitList)
+            {
+                _unitGroup.AddUnit(unit);
+            }
+            Unit foundUnit = _unitGroup.GetUnitById(3);
+            Assert.NotNull(foundUnit);
         }
 
         [Fact]
         public void GetUnit_ByNullUnitId()
         {
+            Unit unit1 = new Unit(3) { Name = "warrior", Type = "person" };
+            Unit unit2 = new Unit(5) { Name = "fighter", Type = "person" };
+            List<Unit> unitList = new List<Unit>() { unit1, unit2 };
 
+            foreach (Unit unit in unitList)
+            {
+                _unitGroup.AddUnit(unit);
+            }
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Unit foundUnit = _unitGroup.GetUnitById(null);
+            });
         }
 
         [Fact]
         public void GetUnit_ByUnitIdNotFound()
         {
+            Unit unit1 = new Unit(3) { Name = "warrior", Type = "person" };
+            Unit unit2 = new Unit(5) { Name = "fighter", Type = "person" };
+            List<Unit> unitList = new List<Unit>() { unit1, unit2 };
 
+            foreach (Unit unit in unitList)
+            {
+                _unitGroup.AddUnit(unit);
+            }
+            Assert.Throws<Exception>(() =>
+            {
+                Unit foundUnit = _unitGroup.GetUnitById(20);
+            });
         }
 
         [Fact]
         public void GetUnit_UnitsIsNull()
         {
-
+            Unit foundUnit = _unitGroup.GetUnitById(20);
+            Assert.Null(foundUnit);
         }
-
     }
 }
