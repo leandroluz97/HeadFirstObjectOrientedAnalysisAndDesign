@@ -17,11 +17,20 @@ namespace GarysGame
             Name = name;
         }
 
-        public void AddUnit(Unit unit)
+        public void AddUnit(Unit? unit)
         {
+            if(unit == null)
+            {
+                throw new ArgumentNullException(nameof(unit));
+            }
+
             if(_units == null)
             {
                 _units = new List<Unit>();
+            }
+            if(_units.FirstOrDefault(unit => unit.Id == unit.Id) != null)
+            {
+                throw new Exception();
             }
             _units.Add(unit);
         }

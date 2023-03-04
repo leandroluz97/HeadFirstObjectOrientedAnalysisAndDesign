@@ -64,35 +64,58 @@ namespace GaryGamesTest
         [Fact]
         public void AddUnit_UnitIsNull()
         {
-            Assert.Throws<Exception>(() =>
+            Unit? unit = null;
+            Assert.Throws<ArgumentNullException>(() =>
             {
-                _unitGroup.RemoveUnit(10);
+                _unitGroup.AddUnit(null);
             });
         }
 
         [Fact]
         public void AddUnit_DuplicateUnitId()
         {
+            Unit unit1 = new Unit(3) { Name = "warrior", Type = "person" };
+            List<Unit> unitList = new List<Unit>() { unit1, unit1 };
 
+            Assert.Throws<Exception>(() =>
+            {
+                foreach (Unit unit in unitList)
+                {
+                    _unitGroup.AddUnit(unit);
+                }
+            });
         }
 
         [Fact]
         public void AddUnit_Valid()
         {
+            Unit unit1 = new Unit(3) { Name = "warrior", Type = "person" };
+            Unit unit2 = new Unit(5) { Name = "fighter", Type = "person" };
+            List<Unit> unitList = new List<Unit>() { unit1, unit2 };
 
+            foreach (Unit unit in unitList)
+            {
+                _unitGroup.AddUnit(unit);
+            }
+            List<Unit> units =  _unitGroup.Units;
+            Assert.Equal(unitList.Count, units.Count);
         }
 
 
         [Fact]
         public void GetUnits_Valid()
         {
-
+            Unit unit = new Unit(3) { Name = "warrior", Type = "person" };
+            _unitGroup.AddUnit(unit);
+            List<Unit> units = _unitGroup.Units;
+            Assert.NotEmpty(units);
         }
 
         [Fact]
         public void GetUnits_IsEmpty()
         {
-
+            List<Unit> units = _unitGroup.Units;
+            Assert.Null(units);
         }
 
         [Fact]
