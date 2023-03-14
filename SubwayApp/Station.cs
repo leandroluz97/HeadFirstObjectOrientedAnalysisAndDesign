@@ -16,10 +16,23 @@ namespace SubwayApp
             _name = name;
         }
 
-        public bool Equals(Object obj)
+        override public bool Equals(object obj)
         {
-            return true;
+            if(obj is Station)
+            {
+                Station otherStation = (Station)obj;
+                if (otherStation.Name.Equals(Name, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
+        public override int GetHashCode()
+        {
+            return Name.ToLower().GetHashCode();
+            //return base.GetHashCode();
+        }
     }
 }
