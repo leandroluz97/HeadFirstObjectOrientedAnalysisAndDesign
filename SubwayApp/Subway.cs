@@ -31,7 +31,7 @@ namespace SubwayApp
         {
             return Stations.Contains(new Station(stationName));
         }
-        public void addConnection(string stationOneName, string stationTwoName, string lineName)
+        public void AddConnection(string stationOneName, string stationTwoName, string lineName)
         {
             if((HasStation(stationOneName) && HasStation(stationTwoName)))
             {
