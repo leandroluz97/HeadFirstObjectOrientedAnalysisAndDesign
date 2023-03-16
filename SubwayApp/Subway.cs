@@ -19,7 +19,7 @@ namespace SubwayApp
 
         public void AddStation(string stationName)
         {
-            if(HasStation(stationName))
+            if(!HasStation(stationName))
             {
                 Station station = new Station(stationName);
                 Stations.Add(station);
@@ -33,7 +33,11 @@ namespace SubwayApp
         }
         public void AddConnection(string stationOneName, string stationTwoName, string lineName)
         {
-            if((HasStation(stationOneName) && HasStation(stationTwoName)))
+
+            bool one = HasStation(stationOneName);
+            bool two = HasStation(stationTwoName);
+
+            if (HasStation(stationOneName) && HasStation(stationTwoName))
             {
                 Station stationOne = new Station(stationOneName);
                 Station stationTwo = new Station(stationTwoName);  

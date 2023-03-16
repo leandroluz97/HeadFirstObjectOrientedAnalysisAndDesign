@@ -21,7 +21,7 @@ namespace SubwayApp
             LoadStations(lines);
             for (int i = 0; i < lines.Length; i++)
             {
-                if ("Line".Contains(lines[i]) && !(string.IsNullOrEmpty(lines[i])))
+                if (lines[i].Contains("line", StringComparison.CurrentCultureIgnoreCase))
                 {
                     LoadConnection(lines, lines[i], i + 1);
                 }
@@ -41,13 +41,14 @@ namespace SubwayApp
 
         public void LoadConnection(string[] lines, string lineName, int startLine)
         {
-            string stationOne;
-            string stationTwo;
-            for (int i = startLine; i < lines.Length -1; i++)
+            int stationOne = startLine;
+            int stationTwo;
+            for (int i = startLine; i < lines.Length - 1; i++)
             {
-                stationOne = lines[i];
-                stationTwo = lines[i + 1];
-                Subway.AddConnection(stationOne, stationTwo, lineName);
+                stationTwo = i + 1;
+                if (string.IsNullOrEmpty(lines[stationTwo])) break;
+                Subway.AddConnection(lines[stationOne], lines[stationTwo], lineName);
+                stationOne = stationTwo;
             }
         }
 

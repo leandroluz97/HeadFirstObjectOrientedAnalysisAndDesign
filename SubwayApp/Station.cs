@@ -21,7 +21,7 @@ namespace SubwayApp
             if(obj is Station)
             {
                 Station otherStation = (Station)obj;
-                if (otherStation.Name.Equals(Name, StringComparison.CurrentCultureIgnoreCase))
+                if (otherStation.Name.Equals(_name, StringComparison.CurrentCultureIgnoreCase))
                 {
                     return true;
                 }
