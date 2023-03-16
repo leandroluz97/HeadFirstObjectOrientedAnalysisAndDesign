@@ -10,11 +10,13 @@ namespace SubwayApp
     {
         public List<Station> Stations { get; set; }
         public List<Connection> Connections { get; set; }
+        public Dictionary<string, object> Network { get; set; }
 
         public Subway()
         {
             Stations = new List<Station>();
             Connections = new List<Connection>();
+            Network = new Dictionary<string, object>();
         }
 
         public void AddStation(string stationName)
