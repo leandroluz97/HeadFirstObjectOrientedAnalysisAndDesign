@@ -72,8 +72,44 @@ namespace SubwayApp
                 Network.Add(stationOne.Name, stationTwoValues);
             }
         }
+        
+        public List<Connection> GetDirections(string startStationName, string endStationName)
+        {
+            if(HasStation(startStationName) || HasStation(endStationName))
+            {
+                throw new Exception("Stations entered so not exist on this subway");
+            }
 
+            Station start = new Station(startStationName);
+            Station end = new Station(endStationName);
+            List<Connection> route = new List<Connection>();
+            List<Station> recheableStations = new List<Station>();
+            Dictionary<string, Station> previousStations = new Dictionary<string, Station>();
 
+            List<Station> neighbors = (List<Station>)Network[startStationName];
+            foreach (Station station in neighbors)
+            {
+                if (station.Equals(end))
+                {
+                    route.Add(GetConnection(start, end));
+                    return route;
+                }
+                else
+                {
+                    recheableStations.Add(station);
+                    previousStations.Add(station.Name, start);
+                }
+            }
+            List<Station> nextStation = new List<Station>();
+            nextStation.AddRange(neighbors);
+
+            return route;
+        }
+
+        public Connection GetConnection(Station stationOne, Station stationTwo)
+        {
+            return default(Connection);
+        }
 
     }
 }
