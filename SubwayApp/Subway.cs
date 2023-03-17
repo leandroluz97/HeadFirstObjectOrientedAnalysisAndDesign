@@ -45,10 +45,33 @@ namespace SubwayApp
                 Station stationTwo = new Station(stationTwoName);  
                 Connection connection  = new Connection(stationOne, stationTwo, lineName);
                 Connections.Add(connection);
+
+                AddConnection(stationOne, stationTwo);
+                AddConnection(stationTwo, stationOne);
             }
             else
             {
                 throw new Exception($"Either {nameof(stationOneName)} or {nameof(stationTwoName)} don't exist!");
+            }
+        }
+
+        public void AddConnection(Station stationOne, Station stationTwo)
+        {
+            if(Network.TryGetValue(stationOne.Name, out object? value))
+            {
+                List<Station> stationOneValues = (List<Station>)value;
+                
+                if(stationOneValues.FirstOrDefault(s => s.Equals(stationTwo)) is null)
+                {
+                    stationOneValues.Add(stationTwo);
+                    Network[stationOne.Name] = stationOneValues;
+                }
+            }
+            else
+            {
+                List<Station> stationTwoValues = new List<Station>();
+                stationTwoValues.Add(stationTwo);
+                Network.Add(stationOne.Name, stationTwoValues);
             }
         }
 
