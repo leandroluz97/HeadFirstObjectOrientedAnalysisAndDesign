@@ -57,13 +57,11 @@ namespace SubwayApp
 
         public void AddConnection(Station stationOne, Station stationTwo)
         {
-            if(Network.TryGetValue(stationOne.Name, out object? value))
+            if(Network.ContainsKey(stationOne.Name))
             {
-                List<Station> stationOneValues = (List<Station>)value;
-                
-                if(stationOneValues.FirstOrDefault(s => s.Equals(stationTwo)) is null)
+                List<Station> stationOneValues = (List<Station>)Network[stationOne.Name];
+                if (stationOneValues.Contains(stationTwo))
                 {
-                    stationOneValues.Add(stationTwo);
                     Network[stationOne.Name] = stationOneValues;
                 }
             }
@@ -74,6 +72,8 @@ namespace SubwayApp
                 Network.Add(stationOne.Name, stationTwoValues);
             }
         }
+
+
 
     }
 }
