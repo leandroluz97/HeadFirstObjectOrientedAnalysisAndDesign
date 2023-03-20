@@ -83,7 +83,7 @@ namespace SubwayApp
             Station start = new Station(startStationName);
             Station end = new Station(endStationName);
             List<Connection> route = new List<Connection>();
-            List<Station> recheableStations = new List<Station>();
+            List<Station> reacheableStations = new List<Station>();
             Dictionary<string, Station> previousStations = new Dictionary<string, Station>();
 
             List<Station> neighbors = (List<Station>)Network[startStationName];
@@ -96,12 +96,40 @@ namespace SubwayApp
                 }
                 else
                 {
-                    recheableStations.Add(station);
+                    reacheableStations.Add(station);
                     previousStations.Add(station.Name, start);
                 }
             }
             List<Station> nextStation = new List<Station>();
             nextStation.AddRange(neighbors);
+            Station currentStation = start;
+
+            for (int i = 1; i < Stations.Count; i++)
+            {
+                List<Station> tempNextStation = new List<Station>();
+                foreach (Station next in nextStation)
+                {
+                    reacheableStations.Add(next);
+                    currentStation = next;
+                    List<Station> currentNeighbors = (List<Station>)Network[currentStation.Name];
+                    foreach(Station currNeighbor in currentNeighbors)
+                    {
+                        if (currNeighbor.Equals(end))
+                        {
+                            reacheableStations.Add(currNeighbor);
+                            previousStations[currNeighbor.Name] = currentStation;
+                            break;
+                        }
+                        else if (!reacheableStations.Contains(currNeighbor))
+                        {
+                            reacheableStations.Add(currNeighbor);
+                            tempNextStation.Add(currNeighbor);
+                            previousStations[currNeighbor.Name] = currentStation;
+                        }
+                    }   
+                }
+                nextStation = tempNextStation;
+            }
 
             return route;
         }
