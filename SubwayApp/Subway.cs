@@ -131,6 +131,21 @@ namespace SubwayApp
                 nextStation = tempNextStation;
             }
 
+            bool keepLooping = true;
+            Station keyStation = end;
+            Station currStation;
+
+            while (keepLooping)
+            {
+                currStation = (Station)previousStations[keyStation.Name];
+                route.Insert(0, GetConnection(currStation, keyStation));
+                if (start.Equals(currStation))
+                {
+                    keepLooping = false;
+                }
+                keyStation = currStation;
+            }
+
             return route;
         }
 
