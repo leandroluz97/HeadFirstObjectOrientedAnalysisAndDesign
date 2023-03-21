@@ -151,7 +151,16 @@ namespace SubwayApp
 
         public Connection GetConnection(Station stationOne, Station stationTwo)
         {
-            return default(Connection);
+            foreach (Connection connection in Connections)
+            {
+                Station one = connection.StationOne;
+                Station two = connection.StationTwo;
+                if(stationOne.Equals(one) && stationTwo.Equals(two))
+                {
+                    return connection;
+                }
+            }
+            return null;
         }
 
     }
