@@ -26,7 +26,6 @@ namespace SubwayApp
                 Station station = new Station(stationName);
                 Stations.Add(station);
             }
-            
         }
 
         public  bool HasStation(string stationName)
@@ -35,7 +34,6 @@ namespace SubwayApp
         }
         public void AddConnection(string stationOneName, string stationTwoName, string lineName)
         {
-
             bool one = HasStation(stationOneName);
             bool two = HasStation(stationTwoName);
 
